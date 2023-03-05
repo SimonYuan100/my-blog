@@ -1,15 +1,21 @@
 import Layout from '../../components/layout'
+import HotLoad from '../../components/HotLoad'
 import { getAllPostIds, getPostData } from '../../lib/posts'
+import Head from 'next/head'
+import { useState } from 'react'
 
 export default function Post({ postData }) {
+  const [postInfo, setPostInfo] = useState(postData)
   return (
     <Layout>
-      {postData.title}
+      <Head>{postInfo.title}</Head>
+      {postInfo.title}
       <br />
-      {postData.id}
+      by {postInfo.author}
       <br />
-      {postData.date}
-      <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }}></div>
+      {postInfo.date}
+      <div dangerouslySetInnerHTML={{ __html: postInfo.contentHtml }}></div>
+      <HotLoad setPost={setPostInfo} params={postInfo} />
     </Layout>
   )
 }
@@ -25,6 +31,7 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   // Fetch necessary data for the blog post using params.id
   const postData = await getPostData(params.id)
+  console.log('postData', postData)
   return {
     props: {
       postData,

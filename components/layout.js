@@ -5,7 +5,7 @@ import utilStyles from '../styles/utils.module.css'
 import Link from 'next/link'
 
 const name = 'Simon Yuan'
-export const siteTitle = 'Next.js Sample Website'
+export const siteTitle = 'record nice moments'
 
 export default function Layout({ children, home }) {
   return (
@@ -32,6 +32,7 @@ export default function Layout({ children, home }) {
               priority
               src="/images/profile.jpg"
               className={utilStyles.borderCircle}
+              style={{ border: '2px solid #eee' }}
               height={144}
               width={144}
               alt={name}
@@ -45,6 +46,7 @@ export default function Layout({ children, home }) {
                 priority
                 src="/images/profile.jpg"
                 className={utilStyles.borderCircle}
+                style={{ border: '2px solid #eee' }}
                 height={108}
                 width={108}
                 alt={name}
